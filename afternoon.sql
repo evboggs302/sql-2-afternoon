@@ -155,3 +155,62 @@ delete from practice_delete pd where value = 150;
 select * from practice_delete;
 
 
+
+
+
+
+
+
+
+-- ECOMMERCE SIMULATION
+--create tables
+CREATE TABLE users ( 
+  user_id serial primary key,
+  first_name varchar(30), 
+  last_name varchar(30),
+  email text
+);
+  
+CREATE TABLE products ( 
+  prod_id serial primary key,
+  name TEXT, 
+  price decimal
+);
+  
+CREATE TABLE orders ( 
+  order_id serial primary key, 
+  prod_id int references products(prod_id),
+  quantity int
+);
+
+-- insert dummy data
+insert into users (first_name, last_name, email)
+values ('Evan', 'Boggs', 'evan@boggs.org');
+insert into users (first_name, last_name, email)
+values ('John', 'Smith', 'john@smith.biz');
+insert into users (first_name, last_name, email)
+values ('Nick', 'Taylor', 'nick@taylor.com');
+insert into products (name, price)
+values ('Bug Spray', 8.25);
+insert into products (name, price)
+values ('tent', 50.00);
+insert into products (name, price)
+values ('marshmellows', 5.50);
+insert into orders (prod_id, quantity)
+values (2, 1);
+insert into orders (prod_id, quantity)
+values (1, 2);
+insert into orders (prod_id, quantity)
+values (3, 10);
+
+select * from users;
+select * from products;
+select * from orders;
+
+-- queries for my data
+select p.name,  p.price, o.quantity from products p
+full join orders o on o.prod_id = p.prod_id;
+
+select p.name,  p.price, o.quantity from products p
+full join orders o on o.prod_id = p.prod_id
+where o.order_id = 1;
