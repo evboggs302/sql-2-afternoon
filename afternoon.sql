@@ -143,9 +143,15 @@ select distinct company from customer;
 
 -- DELETE ROWS
 --2
-
+delete from practice_delete pd where type = 'bronze';
+select * from practice_delete;
 
 --3
-
+delete from practice_delete pd where type = 'silver';
+select * from practice_delete;
 
 --4
+delete from practice_delete pd where value = 150;
+select * from practice_delete;
+
+
