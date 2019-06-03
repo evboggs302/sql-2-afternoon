@@ -209,8 +209,36 @@ select * from orders;
 
 -- queries for my data
 select p.name,  p.price, o.quantity from products p
-full join orders o on o.prod_id = p.prod_id;
-
-select p.name,  p.price, o.quantity from products p
 full join orders o on o.prod_id = p.prod_id
 where o.order_id = 1;
+
+select p.name,  p.price, o.quantity from products p
+full join orders o on o.prod_id = p.prod_id;
+
+
+-- add foreign key from orders to users
+alter table orders
+add column user_id int references users(user_id);
+
+--update orders table to link a user to each order
+update orders
+where order_id = 1
+set user_id = 2;
+
+update orders
+    where order_id = 2
+    set user_id = 3;
+
+update orders
+where order_id = 3
+set user_id = 1;
+
+select * from users;
+select * from orders;
+
+-- queries for my data
+select p.name,  p.price, o.quantity from products p
+join orders o on o.prod_id = p.prod_id
+join users u on o.user_id = u.user_id
+where o.user_id = 1
+
