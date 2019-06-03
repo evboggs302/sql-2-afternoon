@@ -43,19 +43,33 @@ where g.name = 'Alternative & Punk';
 
 -- PRACTICE NESTED QUERIES
 --1
-
+select * from invoice i
+where i.invoice_id in (select invoice_id from invoice_line
+                       where unit_price > .99);
 
 --2
-
+select * from playlist_track pt
+where pt.playlist_id in
+    (select playlist_id from playlist p
+    where p.name = 'Music');
 
 --3
-
+select name from track
+where track_id in
+(select track_id from playlist_track
+ where playlist_id = 5);
 
 --4
-
+select * from track
+where genre_id in
+(select genre_id from genre
+ where name = 'Comedy');
 
 --5
-
+select * from track
+where album_id in
+(select album_id from album
+ where title = 'Fireball');
 
 --6
 
