@@ -226,8 +226,8 @@ where order_id = 1
 set user_id = 2;
 
 update orders
-    where order_id = 2
-    set user_id = 3;
+where order_id = 2
+set user_id = 3;
 
 update orders
 where order_id = 3
