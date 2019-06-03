@@ -72,55 +72,76 @@ where album_id in
  where title = 'Fireball');
 
 --6
-
+select * from track
+where album_id in
+	(select album_id from album
+ 		where artist_id in (select artist_id from artist
+                       where name = 'Queen'));
 
 
 -- PRACTICE UPDATING ROWS
 --1
-
+update customer
+set fax = null where fax is not null;
+select * from customer;
 
 --2
-
+update customer
+set company = 'Self' where company is null;
+select * from customer;
 
 --3
-
+update customer
+set last_name = 'Thompson' 
+where last_name = 'Barnett' AND first_name = 'Julia';
+select * from customer;
 
 --4
-
+update customer
+set support_rep_id = 4 
+where email = 'luisrojas@yahoo.cl';
+select * from customer;
 
 --5
-
-
---6
+update track
+set composer = 'The Darkness Around Us'
+where composer is null AND genre_id = (select genre_id from genre
+                  where name = 'Metal');
+select * from track
+where composer = 'The Darkness Around Us';
 
 
 
 -- GROUP BY
 --1
-
+select g.name, count(*) from track t
+join genre g on t.genre_id = g.genre_id
+group by g.name;
 
 --2
-
+select g.name, count(*) from track t
+join genre g on g.genre_id = t.genre_id
+where g.name = 'Pop' or g.name = 'Rock'
+group by g.name;
 
 --3
-
+select a.name, count(b.title) from artist a
+join album b on a.artist_id = b.artist_id
+group by a.name;
 
 
 -- USE DISTINCT
 --1
-
+select distinct composer from track;
 
 --2
-
+select distinct billing_postal_code from invoice;
 
 --3
-
+select distinct company from customer;
 
 
 -- DELETE ROWS
---1
-
-
 --2
 
 
